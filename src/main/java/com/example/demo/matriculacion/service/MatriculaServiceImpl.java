@@ -37,17 +37,17 @@ public class MatriculaServiceImpl implements IMatriculaService {
 			valorMatricula = vehiculo.getPrecio().multiply(new BigDecimal(0.10));
 		}
 
-		if (valorMatricula.equals(new BigDecimal(2000))) {
+		if (valorMatricula.compareTo(new BigDecimal(2000)) == 1) {
 			valorMatricula = valorMatricula.subtract(valorMatricula.multiply(new BigDecimal(0.07)));
 		}
-		
-		//Creo matricula
+
+		// Creo matricula
 		Matricula matricula = new Matricula();
 		matricula.setFecha(LocalDateTime.now());
 		matricula.setPropietario(propietario);
 		matricula.setVehiculo(vehiculo);
 		matricula.setValor(valorMatricula);
-		
+
 		this.matriculaRepository.insertar(matricula);
 	}
 }
